@@ -3,7 +3,7 @@
 @Owner: Marckenrold Cadet
 # Power BI Budgeting Dashboard (ARIMA) – Documentation 
 
-This zip contains everything needed to assemble a 3‑page Power BI report with an ARIMA/SARIMAX forecast.
+This is everything needed to assemble a 3‑page Power BI report with an ARIMA/SARIMAX forecast.
 
 ## What’s inside
 - `data/budget_sample.csv` – Sample 36‑month dataset (Dept × Category × Date with Budget/Actual)
