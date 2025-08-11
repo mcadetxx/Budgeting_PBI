@@ -1,0 +1,31 @@
+-- DAX Measures (paste into Power BI after loading the model)
+Total Budget = SUM('BudgetData'[Budget])
+Total Actual = SUM('BudgetData'[Actual])
+YTD Budget = TOTALYTD([Total Budget], 'BudgetData'[Date])
+YTD Actual = TOTALYTD([Total Actual], 'BudgetData'[Date])
+YTD Variance $ = [YTD Actual] - [YTD Budget]
+YTD Variance % = DIVIDE([YTD Variance $], [YTD Budget])
+
+-- After merging Python result as table 'ForecastData':
+Forecast Amount = SUM('ForecastData'[Forecast])
+Forecast Lower = SUM('ForecastData'[Lower])
+Forecast Upper = SUM('ForecastData'[Upper])
+
+-- Year-End Projection (Actuals to date + Forecast for remaining months)
+Year-End Projection =
+VAR LastHistDate = CALCULATE(MAX('BudgetData'[Date]), ALL('BudgetData'))
+VAR CurrentYear = YEAR(LastHistDate)
+VAR ActualsToDate =
+    CALCULATE(
+        [Total Actual],
+        YEAR('BudgetData'[Date]) = CurrentYear
+    )
+VAR ForecastRemainder =
+    CALCULATE(
+        [Forecast Amount],
+        FILTER('ForecastData', YEAR('ForecastData'[Date]) = CurrentYear &&
+            'ForecastData'[Date] > LastHistDate)
+    )
+RETURN ActualsToDate + ForecastRemainder
+
+Expected Surplus/Deficit = [Total Budget] - [Year-End Projection]
