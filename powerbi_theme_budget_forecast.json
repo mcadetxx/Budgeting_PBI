@@ -1,0 +1,49 @@
+{
+  "name": "Budget Forecast Theme",
+  "textClasses": {
+    "title": {
+      "fontSize": 18
+    },
+    "header": {
+      "fontSize": 12
+    },
+    "callout": {
+      "fontSize": 16
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "legend": [
+        {
+          "show": true
+        }
+      ],
+      "title": [
+        {
+          "show": true
+        }
+      ],
+      "categoryAxis": [
+        {
+          "gridlineShow": false
+        }
+      ],
+      "valueAxis": [
+        {
+          "gridlineShow": true
+        }
+      ]
+    }
+  },
+  "dataColors": [
+    "#4C78A8",
+    "#F58518",
+    "#54A24B",
+    "#E45756",
+    "#72B7B2",
+    "#B279A2"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#2E2E2E",
+  "tableAccent": "#4C78A8"
+}
